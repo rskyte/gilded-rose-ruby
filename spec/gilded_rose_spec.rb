@@ -15,20 +15,6 @@ describe GildedRose do
       expect(items[0].to_s).to eq "foo, -1, 0"
     end
 
-    describe "standard items" do
-      it "update correctly" do
-        items = [Item.new("foo", 1, 1)]
-        GildedRose.new(items).update_quality()
-        expect(items[0].to_s).to eq "foo, 0, 0"
-      end
-
-      it "update past sell-by correctly" do
-        items = [Item.new("foo", 0, 3)]
-        GildedRose.new(items).update_quality()
-        expect(items[0].to_s).to eq "foo, -1, 1"
-      end
-    end
-
     describe "legendary items" do
       it "update correctly" do
         items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 1)]
