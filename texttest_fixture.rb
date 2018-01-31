@@ -1,6 +1,4 @@
-#!/usr/bin/ruby -w
-
-require File.join(File.dirname(__FILE__), 'gilded_rose')
+require_relative 'lib/gilded_rose.rb'
 
 puts "OMGHAI!"
 items = [
@@ -12,8 +10,7 @@ items = [
   TicketItem.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=15, quality=20),
   TicketItem.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=49),
   TicketItem.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49),
-  # This Conjured item does not work properly yet
-  StandardItem.new(name="Conjured Mana Cake", sell_in=3, quality=6), # <-- :O
+  StandardItem.new(name="Conjured Mana Cake", sell_in=3, quality=6)
 ]
 
 days = 2

@@ -1,12 +1,11 @@
-require 'standard_item'
+require_relative 'standard_item'
 
 class TicketItem < StandardItem
   private
   def update_quality
-    unless @quality >=50 || @quality <= 0
-      increment_quality
-      @quality = 0 if past_sell_by?
-    end
+    increment_quality
+    apply_quality_limits
+    @quality = 0 if past_sell_by?
   end
 
   def increment_quality

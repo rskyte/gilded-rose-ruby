@@ -1,4 +1,4 @@
-require 'item'
+require_relative 'item'
 
 class StandardItem < Item
 
@@ -9,11 +9,14 @@ class StandardItem < Item
 
   private
   def update_quality
-    unless @quality >= 50 || @quality <= 0
-      quality_multiplier = calculate_quality_multiplier
-      quality_multiplier.times { increment_quality }
-      @quality = 0 if @quality < 0
-    end
+    quality_multiplier = calculate_quality_multiplier
+    quality_multiplier.times { increment_quality }
+    apply_quality_limits  
+  end
+
+  def apply_quality_limits
+    @quality = 0 if @quality < 0
+    @quality = 50 if @quality > 50
   end
 
   def calculate_quality_multiplier
@@ -23,7 +26,8 @@ class StandardItem < Item
   end
 
   def is_conjured?
-    @name.split(" ")[0] == ("conjured" || "Conjured")
+    tag = @name.split(" ")[0]
+    tag == "conjured" || tag == "Conjured"
   end
 
   def past_sell_by?
