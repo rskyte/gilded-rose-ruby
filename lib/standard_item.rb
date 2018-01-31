@@ -1,7 +1,9 @@
 require_relative 'item'
 
 class StandardItem < Item
-
+  MAXIMUM_QUALITY = 50
+  MINIMUM_QUALITY = 0
+  
   def update_item
     update_quality
     increment_sell_by
@@ -11,12 +13,12 @@ class StandardItem < Item
   def update_quality
     quality_multiplier = calculate_quality_multiplier
     quality_multiplier.times { increment_quality }
-    apply_quality_limits  
+    apply_quality_limits
   end
 
   def apply_quality_limits
-    @quality = 0 if @quality < 0
-    @quality = 50 if @quality > 50
+    @quality = MINIMUM_QUALITY if @quality < MINIMUM_QUALITY
+    @quality = MAXIMUM_QUALITY if @quality > MAXIMUM_QUALITY
   end
 
   def calculate_quality_multiplier
