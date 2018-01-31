@@ -15,29 +15,5 @@ describe GildedRose do
       expect(items[0].to_s).to eq "foo, -1, 0"
     end
 
-    describe "ticket items" do
-      it "update correctly" do
-        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 1),
-                 Item.new("Backstage passes to a TAFKAL80ETC concert", 9, 1),
-                 Item.new("Backstage passes to a TAFKAL80ETC concert", 4, 1)]
-        GildedRose.new(items).update_quality()
-        expect(items[0].to_s).to eq "Backstage passes to a TAFKAL80ETC concert, 14, 2"
-        expect(items[1].to_s).to eq "Backstage passes to a TAFKAL80ETC concert, 8, 3"
-        expect(items[2].to_s).to eq "Backstage passes to a TAFKAL80ETC concert, 3, 4"
-      end
-
-      it "update past sell-by correctly" do
-        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 10)]
-        GildedRose.new(items).update_quality()
-        expect(items[0].to_s).to eq "Backstage passes to a TAFKAL80ETC concert, -1, 0"
-      end
-
-      it "cannot have quality values over 50" do
-        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 50)]
-        GildedRose.new(items).update_quality()
-        expect(items[0].to_s).to eq "Backstage passes to a TAFKAL80ETC concert, 0, 50"
-      end
-    end
-
   end
 end
