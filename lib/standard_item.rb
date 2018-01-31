@@ -9,9 +9,10 @@ class StandardItem < Item
 
   private
   def update_quality
-    unless @quality >=50 || @quality <= 0
+    unless @quality >= 50 || @quality <= 0
       qualityMultiplier = past_sell_by? ? 2 : 1
       qualityMultiplier.times { increment_quality }
+      @quality = 0 if @quality < 0
     end
   end
 

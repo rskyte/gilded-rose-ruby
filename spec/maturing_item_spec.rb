@@ -10,9 +10,9 @@ describe MaturingItem do
     end
 
     it "update past sell-by correctly" do
-      item = MaturingItem.new("Aged Brie", 0, 1)
+      item = MaturingItem.new("Aged Brie", 0, 0)
       item.update_item
-      expect(item.to_s).to eq "Aged Brie, -1, 3"
+      expect(item.to_s).to eq "Aged Brie, -1, 2"
     end
 
     it "cannot have quality values over 50" do
